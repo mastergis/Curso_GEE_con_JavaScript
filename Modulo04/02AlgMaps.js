@@ -10,6 +10,10 @@ var img = ee.Image('LANDSAT/LC08/C01/T1_TOA/LC08_093077_20200427')
 Map.addLayer(img, {min:0.0, max:0.5, bands:['B6','B5', 'B4']}, 'Landsat 8')
 
 //Calculo del NBR (NIR-SWIR/NIR+SWIR)
+//El análisis de severidad de incendios a través del índice NBR (Normalized Burn Ratio) 
+//es una de las vías que podremos desempeñar durante los análisis de imágenes satélite 
+//con el fin de evaluar daños forestales o analizar la evolución de la regeneración de la
+//cubierta vegetal tras un incendio.
 var NBR = img.select('B5').subtract(img.select('B7'))
           .divide(img.select('B5').add(img.select('B7')));
 
